@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 6, 2016 9:47:02 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Hospital.Doctor" table="doctor" catalog="oldagehospital" optimistic-lock="version">
+        <id name="docNo" type="string">
+            <column name="doc_no" length="20" />
+            <generator class="assigned" />
+        </id>
+        <property name="docLastname" type="string">
+            <column name="doc_lastname" length="45" />
+        </property>
+        <property name="docFirstname" type="string">
+            <column name="doc_firstname" length="45" />
+        </property>
+        <property name="streetName" type="string">
+            <column name="Street_name" length="225" />
+        </property>
+        <property name="houseNumber" type="string">
+            <column name="house_number" length="5" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="45" />
+        </property>
+        <property name="cellphone" type="string">
+            <column name="cellphone" length="25" />
+        </property>
+        <property name="dateOfBirth" type="date">
+            <column name="date_of_birth" length="0" />
+        </property>
+        <property name="sex" type="string">
+            <column name="sex" length="5" />
+        </property>
+        <property name="currentSalary" type="java.lang.Double">
+            <column name="current_salary" precision="22" scale="0" />
+        </property>
+        <set name="patients" table="patient" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Doctor_doc_no" length="20" not-null="true" />
+            </key>
+            <one-to-many class="Hospital.Patient" />
+        </set>
+    </class>
+</hibernate-mapping>

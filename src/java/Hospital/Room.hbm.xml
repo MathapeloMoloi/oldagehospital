@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 6, 2016 9:47:02 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Hospital.Room" table="room" catalog="oldagehospital" optimistic-lock="version">
+        <composite-id name="id" class="Hospital.RoomId">
+            <key-property name="roomNo" type="string">
+                <column name="Room_no" length="5" />
+            </key-property>
+            <key-property name="nurseNurseId" type="string">
+                <column name="Nurse_nurse_id" length="5" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="nurse" class="Hospital.Nurse" update="false" insert="false" fetch="select">
+            <column name="Nurse_nurse_id" length="5" not-null="true" />
+        </many-to-one>
+        <property name="telExtNo" type="java.lang.Integer">
+            <column name="tel_ext_no" />
+        </property>
+        <property name="patientBedNo" type="java.lang.Integer">
+            <column name="patient_bed_no" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 6, 2016 9:47:02 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Hospital.Patient" table="patient" catalog="oldagehospital" optimistic-lock="version">
+        <composite-id name="id" class="Hospital.PatientId">
+            <key-property name="inPatientNo" type="string">
+                <column name="in_patient_no" length="5" />
+            </key-property>
+            <key-property name="doctorDocNo" type="string">
+                <column name="Doctor_doc_no" length="20" />
+            </key-property>
+            <key-property name="patientMedicationDrugNo" type="int">
+                <column name="Patient_medication_drug_no" />
+            </key-property>
+            <key-property name="receptionistRecepNo" type="string">
+                <column name="Receptionist_recep_no" length="5" />
+            </key-property>
+            <key-property name="nurseNurseId" type="string">
+                <column name="Nurse_nurse_id" length="5" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="doctor" class="Hospital.Doctor" update="false" insert="false" fetch="select">
+            <column name="Doctor_doc_no" length="20" not-null="true" />
+        </many-to-one>
+        <many-to-one name="nurse" class="Hospital.Nurse" update="false" insert="false" fetch="select">
+            <column name="Nurse_nurse_id" length="5" not-null="true" />
+        </many-to-one>
+        <many-to-one name="patientMedication" class="Hospital.PatientMedication" update="false" insert="false" fetch="select">
+            <column name="Patient_medication_drug_no" not-null="true" />
+        </many-to-one>
+        <many-to-one name="receptionist" class="Hospital.Receptionist" update="false" insert="false" fetch="select">
+            <column name="Receptionist_recep_no" length="5" not-null="true" />
+        </many-to-one>
+        <property name="patientFirstName" type="string">
+            <column name="patient_first_name" length="20" />
+        </property>
+        <property name="patientLastName" type="string">
+            <column name="patient_last_name" length="20" />
+        </property>
+        <property name="streetName" type="string">
+            <column name="Street_name" length="30" />
+        </property>
+        <property name="houseNo" type="java.lang.Integer">
+            <column name="house_no" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="15" />
+        </property>
+        <property name="cellphone" type="java.lang.Integer">
+            <column name="cellphone" />
+        </property>
+        <property name="dateOfBirth" type="date">
+            <column name="date_of_birth" length="0" />
+        </property>
+        <property name="sex" type="java.lang.Character">
+            <column name="sex" length="1" />
+        </property>
+        <property name="maritalStatus" type="java.lang.Character">
+            <column name="marital_status" length="1" />
+        </property>
+        <property name="dateRegistration" type="date">
+            <column name="date_registration" length="0" />
+        </property>
+        <property name="admissionStatus" type="string">
+            <column name="admission_status" length="6" />
+        </property>
+    </class>
+</hibernate-mapping>

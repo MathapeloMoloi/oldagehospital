@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 6, 2016 9:47:02 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Hospital.PatientAppointment" table="patient_appointment" catalog="oldagehospital" optimistic-lock="version">
+        <composite-id name="id" class="Hospital.PatientAppointmentId">
+            <key-property name="appNo" type="int">
+                <column name="app_no" />
+            </key-property>
+            <key-property name="receptionistRecepNo" type="string">
+                <column name="Receptionist_recep_no" length="5" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="receptionist" class="Hospital.Receptionist" update="false" insert="false" fetch="select">
+            <column name="Receptionist_recep_no" length="5" not-null="true" />
+        </many-to-one>
+        <property name="appDate" type="date">
+            <column name="app_date" length="0" />
+        </property>
+        <property name="appTime" type="date">
+            <column name="app_time" length="0" />
+        </property>
+    </class>
+</hibernate-mapping>

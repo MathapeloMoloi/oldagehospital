@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 6, 2016 9:47:02 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Hospital.Receptionist" table="receptionist" catalog="oldagehospital" optimistic-lock="version">
+        <id name="recepNo" type="string">
+            <column name="recep_no" length="5" />
+            <generator class="assigned" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="first_name" length="20" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="20" />
+        </property>
+        <property name="streetName" type="string">
+            <column name="street_name" length="30" />
+        </property>
+        <property name="houseNo" type="java.lang.Integer">
+            <column name="house_no" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="15" />
+        </property>
+        <property name="cellphoneNo" type="java.lang.Integer">
+            <column name="cellphone_no" />
+        </property>
+        <property name="username" type="string">
+            <column name="username" length="45" />
+        </property>
+        <set name="patients" table="patient" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Receptionist_recep_no" length="5" not-null="true" />
+            </key>
+            <one-to-many class="Hospital.Patient" />
+        </set>
+        <set name="patientAppointments" table="patient_appointment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Receptionist_recep_no" length="5" not-null="true" />
+            </key>
+            <one-to-many class="Hospital.PatientAppointment" />
+        </set>
+    </class>
+</hibernate-mapping>
